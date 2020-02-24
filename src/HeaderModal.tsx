@@ -5,7 +5,8 @@ import {
   ImageSourcePropType,
   StyleProp,
   ViewStyle,
-  ImageStyle
+  ImageStyle,
+  TextStyle
 } from 'react-native'
 import CloseButton from './CloseButton'
 
@@ -17,6 +18,9 @@ const styles = StyleSheet.create({
 })
 
 interface HeaderModalProps {
+  cancelIsText?: boolean
+  cancelText?: string
+  cancelTextStyle?: StyleProp<TextStyle>
   withFilter?: boolean
   withCloseButton?: boolean
   closeButtonImage?: ImageSourcePropType
@@ -28,6 +32,9 @@ interface HeaderModalProps {
 }
 export const HeaderModal = (props: HeaderModalProps) => {
   const {
+    cancelIsText,
+    cancelText,
+    cancelTextStyle,
     withFilter,
     withCloseButton,
     closeButtonImage,
@@ -42,6 +49,9 @@ export const HeaderModal = (props: HeaderModalProps) => {
     return (
       <View style={styles.container}>
         {withCloseButton && <CloseButton
+          cancelIsText={cancelIsText}
+          cancelText={cancelText}
+          cancelTextStyle={cancelTextStyle}
           image={closeButtonImage}
           style={closeButtonStyle}
           imageStyle={closeButtonImageStyle}
