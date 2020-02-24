@@ -22,6 +22,7 @@ interface HeaderModalProps {
   closeButtonImage?: ImageSourcePropType
   closeButtonStyle?: StyleProp<ViewStyle>
   closeButtonImageStyle?: StyleProp<ImageStyle>
+  closeButtonPosition: string
   onClose(): void
   renderFilter(props: HeaderModalProps): ReactNode
 }
@@ -33,21 +34,38 @@ export const HeaderModal = (props: HeaderModalProps) => {
     closeButtonStyle,
     closeButtonImageStyle,
     onClose,
-    renderFilter
+    renderFilter,
+    closeButtonPosition
   } = props
-  return (
-    <View style={styles.container}>
-      {withCloseButton && <CloseButton
-        image={closeButtonImage}
-        style={closeButtonStyle}
-        imageStyle={closeButtonImageStyle}
-        onPress={onClose}
-      />}
-      {withFilter && renderFilter(props)}
-    </View>
-  )
+
+  if (closeButtonPosition === 'left') {
+    return (
+      <View style={styles.container}>
+        {withCloseButton && <CloseButton
+          image={closeButtonImage}
+          style={closeButtonStyle}
+          imageStyle={closeButtonImageStyle}
+          onPress={onClose}
+        />}
+        {withFilter && renderFilter(props)}
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        {withFilter && renderFilter(props)}
+        {withCloseButton && <CloseButton
+          image={closeButtonImage}
+          style={closeButtonStyle}
+          imageStyle={closeButtonImageStyle}
+          onPress={onClose}
+        />}
+      </View>
+    );
+  }
 }
 
 HeaderModal.defaultProps = {
-  withCloseButton: true
+  withCloseButton: true,
+  closeButtonPosition: 'right',
 }

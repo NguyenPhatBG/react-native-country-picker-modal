@@ -9,7 +9,9 @@ import {
   ViewStyle,
   ImageSourcePropType,
   ImageStyle,
-  StyleSheet
+  StyleSheet,
+  Text,
+  TextStyle
 } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTheme } from './CountryTheme'
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     width: 25,
     resizeMode: 'contain'
   }
-})
+});
 
 interface CloseButtonProps {
   style?: StyleProp<ViewStyle>
