@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
 });
 
 interface CloseButtonProps {
+  cancelIsText?: boolean
+  cancelText?: string
+  cancelTextStyle?: StyleProp<TextStyle>
   style?: StyleProp<ViewStyle>
   imageStyle?: StyleProp<ImageStyle>
   image?: ImageSourcePropType
@@ -55,14 +58,18 @@ const CloseButtonAndroid = (props: CloseButtonProps) => {
         onPress={props.onPress}
       >
         <View>
-          <Image
-            source={closeImage}
-            style={[
-              styles.imageStyle,
-              props.imageStyle,
-              { tintColor: onBackgroundTextColor }
-            ]}
-          />
+          {props.cancelIsText ? (
+            <Text style={props.cancelTextStyle}>{props.cancelText}</Text>
+          ) : (
+            <Image
+              source={closeImage}
+              style={[
+                styles.imageStyle,
+                props.imageStyle,
+                { tintColor: onBackgroundTextColor }
+              ]}
+            />
+          )}
         </View>
       </TouchableNativeFeedback>
     </View>
@@ -79,14 +86,18 @@ const CloseButtonIOS = (props: CloseButtonProps) => {
   return (
     <View style={[styles.container, props.style]}>
       <TouchableOpacity onPress={props.onPress}>
-        <Image
-          source={closeImage}
-          style={[
-            styles.imageStyle,
-            props.imageStyle,
-            { tintColor: onBackgroundTextColor }
-          ]}
-        />
+        {props.cancelIsText ? (
+            <Text style={props.cancelTextStyle}>{props.cancelText}</Text>
+          ) : (
+            <Image
+              source={closeImage}
+              style={[
+                styles.imageStyle,
+                props.imageStyle,
+                { tintColor: onBackgroundTextColor }
+              ]}
+            />
+        )}
       </TouchableOpacity>
     </View>
   )
@@ -94,7 +105,8 @@ const CloseButtonIOS = (props: CloseButtonProps) => {
 
 const propTypes = {
   onPress: PropTypes.func,
-  image: PropTypes.any
+  image: PropTypes.any,
+  cancelText: 'Cancel'
 }
 CloseButtonIOS.prototype = propTypes
 CloseButtonAndroid.prototype = propTypes
