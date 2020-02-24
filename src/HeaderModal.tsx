@@ -65,6 +65,9 @@ export const HeaderModal = (props: HeaderModalProps) => {
       <View style={styles.container}>
         {withFilter && renderFilter(props)}
         {withCloseButton && <CloseButton
+          cancelIsText={cancelIsText}
+          cancelText={cancelText}
+          cancelTextStyle={cancelTextStyle}
           image={closeButtonImage}
           style={closeButtonStyle}
           imageStyle={closeButtonImageStyle}
