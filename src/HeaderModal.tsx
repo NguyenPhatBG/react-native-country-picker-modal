@@ -14,6 +14,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 4,
+    borderRightWidth: 4,
+    borderBottomWidth: 5,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: -5,
+    transform: [
+      { rotate: '180deg' }
+    ],
   }
 })
 
@@ -27,6 +44,7 @@ interface HeaderModalProps {
   closeButtonStyle?: StyleProp<ViewStyle>
   closeButtonImageStyle?: StyleProp<ImageStyle>
   closeButtonPosition: string
+  borderBottomColor: string
   onClose(): void
   renderFilter(props: HeaderModalProps): ReactNode
 }
@@ -41,6 +59,7 @@ export const HeaderModal = (props: HeaderModalProps) => {
     closeButtonStyle,
     closeButtonImageStyle,
     onClose,
+    borderBottomColor,
     renderFilter,
     closeButtonPosition
   } = props
@@ -58,6 +77,7 @@ export const HeaderModal = (props: HeaderModalProps) => {
           onPress={onClose}
         />}
         {withFilter && renderFilter(props)}
+        <View style={[styles.triangle, { borderBottomColor }]} />
       </View>
     );
   } else {
@@ -73,6 +93,7 @@ export const HeaderModal = (props: HeaderModalProps) => {
           imageStyle={closeButtonImageStyle}
           onPress={onClose}
         />}
+        <View style={[styles.triangle, { borderBottomColor}]} />
       </View>
     );
   }
@@ -81,4 +102,5 @@ export const HeaderModal = (props: HeaderModalProps) => {
 HeaderModal.defaultProps = {
   withCloseButton: true,
   closeButtonPosition: 'right',
+  borderBottomColor: '#FFBC00',
 }

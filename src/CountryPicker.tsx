@@ -42,6 +42,7 @@ const renderFilter = (
   )
 
 interface CountryPickerProps {
+  borderBottomColor?: string
   countryCode?: CountryCode
   region?: Region
   subregion?: Subregion
@@ -81,6 +82,7 @@ interface CountryPickerProps {
 
 export const CountryPicker = (props: CountryPickerProps) => {
   const {
+    borderBottomColor,
     countryCode,
     region,
     subregion,
@@ -187,6 +189,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
       >
         <HeaderModal
           {...{
+            borderBottomColor,
             cancelIsText,
             cancelText,
             cancelTextStyle,
